@@ -1,7 +1,7 @@
 package com.kdfus.controller.mall;
 
 import com.kdfus.common.Constants;
-import com.kdfus.domain.ServiceResultEnum;
+import com.kdfus.common.ServiceResultEnum;
 import com.kdfus.domain.dto.UserLoginDTO;
 import com.kdfus.domain.vo.Result;
 import com.kdfus.service.UserService;
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -43,9 +44,39 @@ public class UserController {
         logger.info("login api,loginName={},loginResult={}", userLoginDTO.getLoginName(), loginResult);
 
         if (!StringUtils.isEmpty(loginResult) && loginResult.length() == Constants.TOKEN_LENGTH) {
-            return ResultGenerator.genSuccessResult(loginResult);
+            Result result = ResultGenerator.genSuccessResult();
+            result.setData(loginResult);
+            return result;
         }
 
         return ResultGenerator.genFailResult(loginResult);
+    }
+
+    @PostMapping("/logout")
+    @ApiOperation(value = "登出接口", notes = "清除token")
+    public Result<String> logout(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        Boolean logoutResult = userService.logout(token);
+        if (logoutResult) {
+            return ResultGenerator.genSuccessResult();
+        }
+        return ResultGenerator.genFailResult("登出失败！");
+    }
+
+    @PostMapping("/register")
+    @ApiOperation(value = "用户注册", notes = "")
+    public Result register(@RequestBody @Valid UserLoginDTO userLoginDTO) {
+        if (!NumberUtil.isPhoneInvalid(userLoginDTO.getLoginName())) {
+            return ResultGenerator.genFailResult(ServiceResultEnum.USER_LOGIN_NAME_IS_NOT_PHONE.getResult());
+        }
+
+        String registerResult = userService.register(userLoginDTO.getLoginName(), userLoginDTO.getPasswordMd5());
+
+        logger.info("register api,loginName={},loginResult={}", userLoginDTO.getLoginName(), registerResult);
+
+        if (ServiceResultEnum.SUCCESS.getResult().equals(registerResult)) {
+            return ResultGenerator.genSuccessResult();
+        }
+        return ResultGenerator.genFailResult(registerResult);
     }
 }

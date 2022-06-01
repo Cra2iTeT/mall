@@ -1,12 +1,17 @@
 package com.kdfus.service.impl;
 
-import com.kdfus.domain.ServiceResultEnum;
+import com.alibaba.fastjson.JSON;
+import com.kdfus.common.Constants;
+import com.kdfus.common.ServiceResultEnum;
 import com.kdfus.domain.dto.UserLoginDTO;
 import com.kdfus.domain.pojo.User;
+import com.kdfus.domain.vo.UserToken;
 import com.kdfus.mapper.UserMapper;
 import com.kdfus.service.UserService;
+import com.kdfus.util.MD5Util;
 import com.kdfus.util.NumberUtil;
 import com.kdfus.util.TimeUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -32,24 +37,41 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String login(UserLoginDTO userLoginDTO) {
-        String redisKey = USER_LOGIN_KEY + userLoginDTO.getLoginName();
-        String token = stringRedisTemplate.opsForValue().get(redisKey);
-        if (!StringUtils.isEmpty(token)) {
-            Long expireNew = TimeUtil.getMaxRedisExpireTime(stringRedisTemplate.getExpire(redisKey));
-            stringRedisTemplate.expire(redisKey, expireNew, TimeUnit.MINUTES);
-            return token;
-        }
-
-        User user = userMapper.selectByLoginName(userLoginDTO.getLoginName());
+        User user = userMapper.selectByLoginNameAndPwd(userLoginDTO.getLoginName(), userLoginDTO.getPasswordMd5());
         if (user == null) {
-            return ServiceResultEnum.USER_NULL_ERROR.getResult();
-        } else if (!userLoginDTO.getPasswordMd5().equals(user.getPasswordMd5())) {
-            return ServiceResultEnum.USER_PWD_ERROR.getResult();
+            return ServiceResultEnum.USER_LOGIN_ERROR.getResult();
+        }
+        String token = NumberUtil.genToken(user.getUserId());
+        UserToken userToken = new UserToken();
+        BeanUtils.copyProperties(user, userToken);
+        stringRedisTemplate.opsForValue()
+                .set(USER_LOGIN_KEY + token, JSON.toJSONString(userToken), USER_LOGIN_TTL, TimeUnit.MINUTES);
+        return token;
+    }
+
+    @Override
+    public Boolean logout(String token) {
+        return stringRedisTemplate.delete(USER_LOGIN_KEY + token);
+    }
+
+    @Override
+    public String register(String loginName, String passwordMd5) {
+        long count = userMapper.countByLoginName(loginName);
+        if (count != 0) {
+            return ServiceResultEnum.USER_EXISTED.getResult();
         }
 
-        token = NumberUtil.genToken(user.getUserId());
-        stringRedisTemplate.opsForValue().set(redisKey, token, USER_LOGIN_TTL, TimeUnit.MINUTES);
-        return token;
+        User registerUser = new User();
+        registerUser.setLoginName(loginName);
+        registerUser.setNickName(loginName);
+        registerUser.setIntroduceSign(Constants.USER_INTRO);
+        passwordMd5 = MD5Util.MD5Encode(passwordMd5, "UTF-8");
+        registerUser.setPasswordMd5(passwordMd5);
+
+        if (userMapper.insertSelective(registerUser) > 0) {
+            return ServiceResultEnum.SUCCESS.getResult();
+        }
+        return ServiceResultEnum.ERROR.getResult();
     }
 
 

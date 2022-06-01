@@ -11,4 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
     String login(UserLoginDTO userLoginDTO);
+
+    Boolean logout(String token);
+
+    String register(String loginName, String passwordMd5);
 }

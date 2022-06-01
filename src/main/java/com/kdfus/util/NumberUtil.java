@@ -1,7 +1,5 @@
 package com.kdfus.util;
 
-import cn.hutool.core.util.RandomUtil;
-
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -67,9 +65,14 @@ public class NumberUtil {
         return buffer.toString();
     }
 
+    /**
+     * 生成32位随机token
+     * @param id
+     * @return
+     */
     public static String genToken(Long id) {
         try {
-            String src = System.currentTimeMillis() + "" + id + RandomUtil.randomString(6);
+            String src = System.currentTimeMillis() + "" + id + genRandomNum(6);
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(src.getBytes());
             String token = new BigInteger(1, md.digest()).toString(16);

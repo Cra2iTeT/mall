@@ -10,5 +10,9 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper {
-    User selectByLoginName(String loginName);
+    User selectByLoginNameAndPwd(String loginName, String passwordMd5);
+
+    long countByLoginName(String loginName);
+
+    int insertSelective(User registerUser);
 }
