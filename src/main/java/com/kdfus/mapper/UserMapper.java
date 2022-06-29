@@ -1,18 +1,15 @@
 package com.kdfus.mapper;
 
-import com.kdfus.domain.pojo.User;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.kdfus.domain.entity.user.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author Cra2iTeT
  * @version 1.0
- * @date 2022/5/31 22:36
+ * @date 2022/6/25 19:08
  */
 @Mapper
-public interface UserMapper {
-    User selectByLoginNameAndPwd(String loginName, String passwordMd5);
+public interface UserMapper extends BaseMapper<User> {
 
-    long countByLoginName(String loginName);
-
-    int insertSelective(User registerUser);
 }

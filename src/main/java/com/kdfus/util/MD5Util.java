@@ -16,10 +16,10 @@ import java.security.MessageDigest;
  */
 public class MD5Util {
     private static String byteArrayToHexString(byte[] data) {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuffer sb = new StringBuffer();
         for (int i = 0; i < data.length; i++)
-            stringBuffer.append(byteToHexString(data[i]));
-        return stringBuffer.toString();
+            sb.append(byteToHexString(data[i]));
+        return sb.toString();
     }
 
     private static String byteToHexString(byte b) {

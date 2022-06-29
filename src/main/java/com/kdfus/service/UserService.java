@@ -1,18 +1,18 @@
 package com.kdfus.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.kdfus.domain.dto.UserLoginDTO;
-import org.springframework.stereotype.Service;
+import com.kdfus.domain.dto.UserRegistryDTO;
+import com.kdfus.domain.entity.user.User;
 
 /**
  * @author Cra2iTeT
- * @version 1.0
- * @date 2022/6/1 0:23
+ * @date 2022/6/25 19:12
  */
-@Service
-public interface UserService {
+public interface UserService extends IService<User> {
     String login(UserLoginDTO userLoginDTO);
 
     Boolean logout(String token);
 
-    String register(String loginName, String passwordMd5);
+    String registry(UserRegistryDTO userRegistryDTO);
 }

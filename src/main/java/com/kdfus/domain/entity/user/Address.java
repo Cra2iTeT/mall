@@ -1,5 +1,7 @@
-package com.kdfus.domain.pojo;
+package com.kdfus.domain.entity.user;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -15,28 +17,28 @@ import java.util.Date;
  * 用户收货地址持久类
  */
 @Data
-public class UserAddress {
-    private Long addressId;
+public class Address {
+    private Long id;
 
     private Long userId;
 
-    private String userName;
+    private String name;
 
-    private String userPhone;
+    private String phone;
 
     /**
      * 是否默认标识
      * 0非默认，1默认
      */
-    private Byte defaultFlag;
+    private Byte isDefault;
 
-    private String provinceName;
+    private String province;
 
-    private String cityName;
+    private String city;
 
-    private String regionName;
+    private String region;
 
-    private String detailAddress;
+    private String detail;
 
     /**
      * 删除标识
@@ -44,9 +46,9 @@ public class UserAddress {
      */
     private Byte isDeleted;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 }

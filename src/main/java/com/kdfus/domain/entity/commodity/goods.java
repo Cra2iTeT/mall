@@ -1,4 +1,4 @@
-package com.kdfus.domain.pojo;
+package com.kdfus.domain.entity.commodity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -8,44 +8,45 @@ import java.util.Date;
 /**
  * @author Cra2iTeT
  * @version 1.0
- * @date 2022/5/31 20:45
+ * @date 2022/6/20 20:32
  */
 
 /**
- * 商品分类持久类
+ * 具体规格的单品
+ * 例如80码红色的ANTA Cra2iTeT签名战靴
  */
 @Data
-public class GoodCategory {
-    private Long categoryId;
+public class goods {
+    private Long id;
+
+    private Long commodityId;
 
     /**
-     * 分类级别
-     * 1、2、3
+     * 单品图片
      */
-    private Byte categoryLevel;
+    private String goodsImg;
+
+    private Integer price;
 
     /**
-     * 父分类id
+     * 规格一
      */
-    private Long parentId;
-
-    private String categoryName;
+    private Long normOne;
 
     /**
-     * 排序值
-     * 值越大越靠前
+     * 规格二
      */
-    private Integer categoryRank;
+    private Long normTwo;
 
     private Byte isDeleted;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
-    private Integer createUser;
+    private Long createId;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
 
-    private Integer updateUser;
+    private Long updateId;
 }

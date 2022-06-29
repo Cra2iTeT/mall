@@ -5,11 +5,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 /**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link https://github.com/newbee-ltd
+ * @author Cra2iTeT
+ * @version 1.0
+ * @date 2022/6/1 11:15
  */
+
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -4,12 +4,9 @@ import com.kdfus.domain.vo.Result;
 import org.springframework.util.StringUtils;
 
 /**
- * 响应结果生成工具
- *
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link https://github.com/newbee-ltd
+ * @author Cra2iTeT
+ * @version 1.0
+ * @date 2022/6/25 19:37
  */
 public class ResultGenerator {
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";

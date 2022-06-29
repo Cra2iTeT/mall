@@ -6,13 +6,13 @@ package com.kdfus.common;
  * @date 2022/5/31 22:43
  */
 public enum ServiceResultEnum {
-    ERROR("error"),
+    ERROR("错误"),
 
-    SUCCESS("success"),
+    SUCCESS("成功"),
 
     USER_EXISTED("用户已存在！"),
 
-    USER_LOGIN_NAME_IS_NOT_PHONE("请输入正确的手机号！"),
+    USER_LOGIN_ACCOUNT_ID_VALID("请输入正确的手机号！"),
 
     USER_LOGIN_ERROR("账号或密码错误！");
 

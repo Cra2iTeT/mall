@@ -1,6 +1,7 @@
-package com.kdfus.domain.pojo;
+package com.kdfus.domain.entity.user;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,22 +17,23 @@ import java.util.Date;
  */
 @Data
 public class User {
-    private Long userId;
+    private Long id;
 
     private String nickName;
 
     /**
-     * 登录名
+     * 账号
      * 默认手机号
      */
-    private String loginName;
+    private String accountId;
 
     private String passwordMd5;
 
     /**
-     * 个性签名
+     * 用户头像
      */
-    private String introduceSign;
+    @TableField(fill = FieldFill.INSERT)
+    private String userImg;
 
     /**
      * 注销标识
@@ -39,8 +41,6 @@ public class User {
      */
     private Byte isDeleted;
 
-    private Byte lockedFlag;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
 }

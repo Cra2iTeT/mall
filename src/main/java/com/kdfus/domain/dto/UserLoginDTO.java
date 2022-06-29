@@ -9,13 +9,13 @@ import java.io.Serializable;
 /**
  * @author Cra2iTeT
  * @version 1.0
- * @date 2022/5/31 22:29
+ * @date 2022/6/25 19:22
  */
 @Data
 public class UserLoginDTO implements Serializable {
     @ApiModelProperty("登录名")
     @NotEmpty(message = "登录名不能为空")
-    private String loginName;
+    private String accountId;
 
     @ApiModelProperty("用户密码(需要MD5加密)")
     @NotEmpty(message = "密码不能为空")

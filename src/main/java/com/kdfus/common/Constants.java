@@ -17,7 +17,9 @@ package com.kdfus.common;
  */
 public class Constants {
     //public final static String FILE_UPLOAD_DIC = "/opt/newbee/upload/";//上传文件的默认url前缀，根据部署设置自行修改
-    public final static String FILE_UPLOAD_DIC = "E:\\mall\\upload\\";//上传文件的默认url前缀，根据部署设置自行修改
+    public final static String FILE_USER_UPLOAD_DIC = "E:\\mall\\userUpload\\";//上传文件的默认url前缀，根据部署设置自行修改
+    public final static String FILE_ADMIN_UPLOAD_DIC = "E:\\mall\\adminUpload\\";//上传文件的默认url前缀，根据部署设置自行修改
+    public final static String FILE_MERCHANT_UPLOAD_DIC = "E:\\mall\\merchantUpload\\";//上传文件的默认url前缀，根据部署设置自行修改
 
     public final static int INDEX_CAROUSEL_NUMBER = 5;//首页轮播图数量(可根据自身需求修改)
 

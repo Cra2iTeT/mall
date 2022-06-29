@@ -3,8 +3,6 @@ package com.kdfus.util;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static com.kdfus.common.RedisConstants.USER_LOGIN_DELAY_TTL;
-
 /**
  * @author Cra2iTeT
  * @version 1.0
@@ -14,7 +12,7 @@ public class TimeUtil {
     private final static String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
 
     /**
-     * 返回当前时间
+     * 以默认格式返回当前时间字符串
      *
      * @return
      */
@@ -30,9 +28,5 @@ public class TimeUtil {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(date);
-    }
-
-    public static Long getMaxRedisExpireTime(Long expireNow) {
-        return (expireNow > USER_LOGIN_DELAY_TTL) ? expireNow : USER_LOGIN_DELAY_TTL;
     }
 }

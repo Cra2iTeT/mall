@@ -12,12 +12,6 @@ import java.util.regex.Pattern;
  * @date 2022/5/31 21:24
  */
 
-/**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link https://github.com/newbee-ltd
- */
 public class NumberUtil {
 
     private NumberUtil() {
@@ -59,10 +53,10 @@ public class NumberUtil {
      * @return
      */
     public static String genOrderNo() {
-        StringBuffer buffer = new StringBuffer(String.valueOf(System.currentTimeMillis()));
+        StringBuffer b = new StringBuffer(String.valueOf(System.currentTimeMillis()));
         int num = genRandomNum(4);
-        buffer.append(num);
-        return buffer.toString();
+        b.append(num);
+        return b.toString();
     }
 
     /**

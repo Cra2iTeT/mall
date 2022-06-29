@@ -1,10 +1,4 @@
-package com.kdfus.domain.pojo;
-
-/**
- * @author Cra2iTeT
- * @version 1.0
- * @date 2022/5/31 21:09
- */
+package com.kdfus.domain.entity.order;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -12,22 +6,26 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * 购物车持久类
+ * @author Cra2iTeT
+ * @version 1.0
+ * @date 2022/6/20 20:41
  */
 
 @Data
-public class ShoppingCartItem {
-    private Long cartItemId;
+public class OrderGoods {
+    private Long id;
 
-    private Long userId;
+    private Long orderId;
+
+    private Long merchantId;
+
+    private Long commodityId;
 
     private Long goodsId;
 
-    /**
-     * 数量
-     * 最大5
-     */
-    private Integer goodsCount;
+    private int count;
+
+    private int price;
 
     private Byte isDeleted;
 
