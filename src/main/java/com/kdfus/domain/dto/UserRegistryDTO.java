@@ -8,11 +8,9 @@ import lombok.Data;
  */
 @Data
 public class UserRegistryDTO {
-    private String nickName;
-
     private String accountId;
 
     private String passwordMd5;
 
-    private String userImg;
+    private String confirmPasswordMd5;
 }

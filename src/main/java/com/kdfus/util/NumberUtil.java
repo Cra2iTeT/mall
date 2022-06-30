@@ -48,11 +48,11 @@ public class NumberUtil {
     }
 
     /**
-     * 生成订单流水号
+     * 生成号
      *
      * @return
      */
-    public static String genOrderNo() {
+    public static String genNo() {
         StringBuffer b = new StringBuffer(String.valueOf(System.currentTimeMillis()));
         int num = genRandomNum(4);
         b.append(num);

@@ -45,4 +45,8 @@ public class Constants {
     public final static int TOKEN_LENGTH = 32;//token字段长度
 
     public final static String USER_INTRO = "随新所欲，蜂富多彩";//默认简介
+
+    public final static String USER_NICK_NAME_PREFIX = "user_";
+    public final static String Admin_NICK_NAME_PREFIX = "admin_";
+    public final static String Merchant_ADMIN_NICK_NAME_PREFIX = "merchantAdmin_";
 }

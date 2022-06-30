@@ -12,9 +12,19 @@ public enum ServiceResultEnum {
 
     USER_EXISTED("用户已存在！"),
 
-    USER_LOGIN_ACCOUNT_ID_VALID("请输入正确的手机号！"),
+    UPDATE_ERROR("信息修改失败"),
 
-    USER_LOGIN_ERROR("账号或密码错误！");
+    PASSWORD_DIFFERENT("两次密码不一致！"),
+
+    PASSWORD_NULL("密码不允许为空"),
+
+    PASSWORD_SAME("新旧密码不允许一致"),
+
+    LOGIN_ACCOUNT_ID_VALID("请输入正确的手机号！"),
+
+    LOGIN_ERROR("账号或密码错误！"),
+
+    LOGIN_NULL("账号、密码不允许为空！");
 
     private String result;
 

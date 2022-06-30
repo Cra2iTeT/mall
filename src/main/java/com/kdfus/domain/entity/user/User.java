@@ -1,7 +1,6 @@
 package com.kdfus.domain.entity.user;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,6 +15,7 @@ import java.util.Date;
  * 用户持久类
  */
 @Data
+@TableName("tb_mall_user")
 public class User {
     private Long id;
 

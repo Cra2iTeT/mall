@@ -2,6 +2,7 @@ package com.kdfus.config.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.kdfus.common.Constants;
+import com.kdfus.util.TimeUtil;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
@@ -17,16 +18,14 @@ import java.util.Date;
 public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.setFieldValByName("createTime", simpleDateFormat.format(new Date()), metaObject);
-        this.setFieldValByName("updateTime", simpleDateFormat.format(new Date()), metaObject);
+        this.setFieldValByName("createTime", new Date(), metaObject);
+        this.setFieldValByName("updateTime", new Date(), metaObject);
         // 默认头像地址
-        this.setFieldValByName("userImg", Constants.FILE_USER_UPLOAD_DIC + "\\default.png", metaObject);
+        this.setFieldValByName("userImg", Constants.FILE_USER_UPLOAD_DIC + "default.png", metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.setFieldValByName("updateTime", simpleDateFormat.format(new Date()), metaObject);
+        this.setFieldValByName("updateTime", new Date(), metaObject);
     }
 }

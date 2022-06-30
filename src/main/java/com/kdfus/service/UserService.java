@@ -15,4 +15,8 @@ public interface UserService extends IService<User> {
     Boolean logout(String token);
 
     String registry(UserRegistryDTO userRegistryDTO);
+
+    String update(String token, String nickName);
+
+    String update(String token, String oldPasswordMd5, String newPasswordMd5, String confirmPasswordMd5);
 }
